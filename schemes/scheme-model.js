@@ -59,8 +59,13 @@ function add(scheme) {
     });
 }
 
-function update() {
-  return;
+function update(changes, id) {
+  return db("schemes")
+    .update(changes)
+    .where({ id })
+    .then((count) => {
+      return findById(id);
+    });
 }
 
 function remove() {
